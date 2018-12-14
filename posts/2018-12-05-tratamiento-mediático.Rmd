@@ -1,0 +1,56 @@
+---
+title: Tratamiento Mediático
+author: En Defensa de los Derechos
+date: '2018-12-05'
+slug: tratamiento-mediático
+categories:
+  - ESTEREOTIPOS DISCRIMINATORIOS
+tags:
+  - ESTEREOTIPOS
+  - MEDIOS DE COMUNICACION
+description: "El tratamiento mediático de los migrantes crea estereotipos discriminatorios e instala un discurso de odio irracional"
+---
+# TRATAMIENTO MEDIATICO
+
+Al igual que lo observado en monitoreos previos, la Defensoría del Público identificó que la mayor cantidad de noticias con tópico “Migrantes” refiere a hechos internacionales, particularmente a la migración africana y asiática hacia Europa, y a la migración latinoamericana hacia Estados Unidos. Estas migraciones suelen ser retratadas de una manera que victimiza, y constituyen un **estereotipo completamente distinto al que se construye sobre las personas migrantes en el ámbito local, en el cual suelen ser criminalizadas.**
+```{r, echo=FALSE, message=FALSE, fig.width=8}
+library(tidyverse)
+library(scales)
+mediatico <- tribble(
+  ~Tema, ~Porc,
+  "Internacionales", 42.6,
+  "Delincuencia/Narcotráfico", 15.8,
+  "Políticas Públicas", 7.9,
+  "Jubilaciones", 5.9,
+  "Comunidades", 5,
+  "Usurpación", 4,
+  "Femicidio", 4,
+  "Ataque xenófobo", 3,
+  "Capacitación Laboral", 2,
+  "Terrorismo", 2,
+  "Refugiados", 2,
+  "Protesta Social", 1,
+  "Turismo", 1,
+  "Educación", 1,
+  "Política", 1,
+  "Información General", 1,
+  "Discriminación", 1)
+
+ggplot(data = mediatico, aes(x=Tema))+
+  geom_col( aes(y= Porc), color ="black", fill= "#c994c7", width = 0.7 )+
+  scale_x_discrete(limits = rev(mediatico$Tema))+
+  geom_text(aes(label = paste0(Porc, "%"), y = Porc+2))+
+  ylim(0,50)+
+  scale_y_continuous(labels = number_format(suffix = "%", prefix = "", accuracy = 1))+
+  labs(y="Noticias con tópico Migrante",
+       x= "Temática",
+       title = "Tratamiento Mediático",
+       subtitle = "Desagregado Tematico en las noticias con tópico Migrantes
+Total = 101 noticias. Año 2017",
+       caption = "Fuente: Defensoría del Público. Monitoreo de Programas Noticiosos de Canales de Aire de la CABA. Feb-Dic 2017")+
+  coord_flip()+
+  theme_bw()+
+  theme(text = element_text(size=12))
+```
+
+Por el contrario, en las noticias referidas a los inmigrantes en Argentina, se continúa observando la construcción de estereotipos discriminatorios ligados a la nacionalidad, sobre todo a hechos relacionados con el “narcotráfico” y delitos de otra índole^[Defensoría del Público. 2017. “Monitoreos de Programas Noticiosos de Canales de Aire de la Ciudad de Buenos Aires Etapa cualitativa. Febrero / Abril / Junio / Agosto / Octubre / Diciembre 2017. Argentina.].

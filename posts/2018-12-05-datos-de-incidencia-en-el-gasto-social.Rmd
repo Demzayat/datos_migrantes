@@ -1,0 +1,138 @@
+---
+title: Datos de Incidencia en el Gasto Social
+author: En Defensa de los Derechos
+date: '2018-12-05'
+slug: datos-de-incidencia-en-el-gasto-social
+categories:
+  - MIGRACIONES Y USO DE LOS SERVICIOS PUBLICOS
+tags:
+  - USO DE LOS SERVICIOS PUBLICOS
+description: "El estereotipo discriminatorio también se construye con la idea de que los  inmigrantes abusan de los servicios públicos, pero, ¿los datos muestran eso?"
+---
+# MIGRACIONES, USO Y ¿ABUSO? DE LOS SERVICIOS PUBLICOS
+
+## Datos de incidencia en el Gasto Social
+* Según los últimos datos disponibles (del año 2015) el porcentaje del Gasto Público Social
+Nacional (GPSN) destinado a migrantes fue del 4,9%, lo cual guarda relación con el
+porcentaje de población migrante que vive en el país (4,5% según en Censo Nacional de
+2010). Esto es equivalente al 0,7% del PBI^[Segun datos de OIM y Consejo Nacional de Coordinación de Políticas Sociales, Presidencia de la Nación. (2018) _“Escenario
+base para el seguimiento de los objetivos de desarrollo sostenible vinculado a las condiciones de vida de los migrantes a través del gasto público social nacional”_). Argentina.].
+
+```{r, echo=FALSE, message=FALSE, fig.width=8}
+require(tidyverse)
+require(scales)
+gastosocial <- tribble(
+  ~Programa, ~PesoMigrante, ~Contributivo,
+  "Prestación previsional", 6.9, TRUE,
+  "Monotributo Social", 5, TRUE,
+  "Asignaciones Familiares", 4.9, TRUE,
+  "Seguro de desempleo", 3.9, TRUE,
+  "Jovenes con más y mejor trabajo", 3.2, FALSE,
+  "Pensiones no contributivas", 2.4, FALSE,
+  "Asinación Universal por Hijo", 1.3, FALSE,
+  "PROGRESAR", 1.1, FALSE)
+
+gastosocial <- gastosocial %>%
+  mutate(Total = 100)
+
+grafo1 <- ggplot (data = gastosocial) +
+  geom_col (aes(x= Programa, y = Total), fill = "grey", color = "black")+
+  geom_col (aes(x= Programa, y = `PesoMigrante`, fill = Contributivo), color = "black")+
+  labs(title = "Participación de los Migrantes en el Gasto Social por Programa",
+       caption = "Fuente: OIM-Consejo Nacional de Coordinacion de Políticas Sociales, 2018.
+Escenario base para el seguimiento de los objetivos de desarrollo humano sostenible
+vinculado a las condiciones de vida de los migrantes a través del gasto público social nacional." )+
+  xlab("")+  ylab("")+
+  geom_hline(yintercept=4.5, color= "red", linetype= 5)+
+  geom_text(aes(label= paste0(PesoMigrante, "%"), x= Programa, y = PesoMigrante +3.5 ))+
+  scale_y_continuous(labels = number_format(suffix = "%", prefix = "", accuracy = 0.1), expression(0,4.5,25,50,75,100), 
+                     breaks = c(0,4.5,25,50,75,100)) +
+  scale_x_discrete(limits = rev(gastosocial$Programa))+
+  scale_fill_discrete(name = "Tipo de Prestación", labels = c("No contributiva", "Contributiva"))+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        #panel.border = element_blank(),
+        axis.ticks = element_blank(),
+        #axis.text.y=element_blank(),
+        #axis.text.x=element_blank(),
+        panel.background = element_rect(fill = "white"),
+        panel.border= element_rect(linetype = "solid", fill = NA),
+        text = element_text(size=12),
+        axis.text.x = element_text(colour = c('black', 'red', 'black', 'black', 'black' ,"black")))+
+  coord_flip()
+grafo1
+```
+* **Más del 79% del GPSN destinado a migrantes se distribuyó a través de
+programas de base contributiva.** Es decir que el mayor porcentaje del GPSN se destinó a
+prestaciones sociales en las que el beneficiario aportó de manera previa a la obtención del
+derecho a acceder a la misma (en algunos casos a lo largo de un periodo sumamente
+prolongado de tiempo)^[OIM y Consejo Nacional de Coordinación de Políticas Sociales, Presidencia de la Nación. (2018) _“Escenario base para el seguimiento de los objetivos de desarrollo sostenible vinculado a las condiciones de vida de los
+migrantes a través del gasto público social nacional”_). Argentina.].
+
+* **Dentro del gasto social destinado a migrantes se destaca la significativa
+concentración en prestaciones previsionales. Las mismas representaron el 70,3% del GPSN
+destinado a migrantes. En Argentina el 20,8% de la población migrante tiene más de 65
+años. Más de la mitad de ellos proviene de Europa**, y si se considera a los españoles y los
+italianos de más de 65 años en conjunto representan más del 44% de los migrantes mayores.
+Estos conforman un colectivo privilegiado como receptores del gasto social^[OIM y Consejo Nacional de Coordinación de Políticas Sociales, Presidencia de la Nación. (2018) _“Escenario base para el seguimiento de los objetivos de desarrollo sostenible vinculado a las condiciones de vida de los
+migrantes a través del gasto público social nacional”_). Argentina.].
+
+* Para acceder a estos programas las personas migrantes deben contar con las
+siguientes cantidades de años de residencia legal en el país:
+![](/posts/2018-12-05-datos-de-incidencia-en-el-gasto-social_files/cantidad_anos.png)
+
+* La institución más relevante en términos de GPSN destinado a migrantes en 2015
+fue **la Administración Nacional de la Seguridad Social (ANSES) que concentró más del 80% de
+los recursos que se destinaron a este colectivo.** Muy por debajo le siguieron el Ministerio de Desarrollo Social (5,7%), de Educación (3,8%), de Salud (2,9%) y el Ministerio de Planificación Federal, Inversión Pública y Servicios (2,8%) .
+```{r, echo=FALSE, message=FALSE, fig.width=7.5, fig.height=7}
+library(waffle)
+library(extrafont)
+
+gpsn <- tribble(
+  ~Organismo, ~Monto,
+  "ANSES - 80.4%", 80.4,
+  "Desarrollo Social - 5.7%", 5.7,
+  "Educación - 3.8%", 3.8,
+  "Salud - 2.9%", 2.9,
+  "Planificación Federal - 2.8%", 2.8,
+  "Obligaciones a cargo del Tesoro - 1.5%", 1.5,
+  "Superint. Seguros de Salud - 0.5%", 0.5,
+  "Trabajo, Empleo, Seguridad Social - 0.5%", 0.5,
+  "Resto - 1.9%", 1.9)
+
+gpsn <- data.frame(gpsn)
+gpsn$Monto <- gpsn$Monto*10
+gpm <- waffle(gpsn, rows = 20, size = 1, colors = c("#8dd3c7", "#bc80bd",  "#bebada",
+  "#fb8072",  "#80b1d3",  "#fdb462",  "#b3de69",  "#fccde5",   "#d9d9d9"),xlab = "1 cuadrado == 0.1%")
+
+gpmigra <- gpm + labs(title = "Distribucion del gasto social destinado a migrantes",
+           caption = "Fuente: OIM-Consejo Nacional de Coordinaci[on de Políticas Sociales. 2018. 
+Escenario base para el seguimiento de los objetivos de desarrollo sostenible
+vinculado a las condiciones de vida de los migrantes a través del gasto público.")
+
+gpsntotal <- tribble(
+  ~Organismo, ~Monto,
+  "ANSES - 63%", 63,
+  "Desarrollo Social - 10%", 10,
+  "Educación - 8%", 8,
+  "Salud - 4%", 4,
+  "Planificación Federal - 4%", 4,
+  "Obligaciones a cargo del Tesoro - 2%", 2,
+  "Seguridad - 2%", 2,
+  "Trabajo, Empleo, Seguridad Social - 1%", 1,
+  "Resto - 3%", 3,
+  "Defensa - 3%", 3)
+
+gpsntotal <- data.frame(gpsntotal)
+gpsntotal$Monto <- gpsntotal$Monto*10
+gpmtotal <- waffle(gpsntotal, rows = 20, size = 1, colors = c("#8dd3c7", "#bc80bd",  "#bebada",
+                                                    "#fb8072",  "#80b1d3",  "#fdb462",  "#b3de69",  "#fccde5",   "#d9d9d9", "#ffffb3"),xlab = "1 cuadrado == 0.1%")
+
+gpmtotal <- gpmtotal + labs(title = "Distribucion del gasto social nacional",
+                      caption = "Fuente: OIM-Consejo Nacional de Coordinaci[on de Políticas Sociales. 2018. 
+                      Escenario base para el seguimiento de los objetivos de desarrollo sostenible
+                      vinculado a las condiciones de vida de los migrantes a través del gasto público.")
+iron(gpmigra, gpmtotal )
+
+```
+

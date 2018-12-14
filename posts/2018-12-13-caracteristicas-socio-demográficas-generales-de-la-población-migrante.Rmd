@@ -1,0 +1,65 @@
+---
+title: Caracteristicas Socio-Demográficas generales de la población migrante
+author: ''
+date: '2018-12-13'
+slug: caracteristicas-socio-demográficas-generales-de-la-población-migrante
+categories: []
+tags:
+  - ESTADISTICAS
+description: "Algunas características socio-demográficas de la población migrante en la Argentina..."
+---
+#ALGUNAS CARACTERÍSTICAS SOCIO-DEMOGRÁFICAS GENERALES DE LA POBLACIÓN MIGRANTE EN ARGENTINA
+
+* Según el Censo Nacional de 2010, la **población migrante en el país representa el 4.5% del total de la población.** Su representación porcentual se ha mantenido relativamente constante (entre el 5% y el 4%) desde 1991.
+```{r echo=FALSE, fig.width=6, message=FALSE}
+library(tidyverse)
+library(scales)
+demografica <- tribble(
+  ~Ano, ~porcentaje,
+  1869,12.1,
+  1985, 25.4,
+  1914, 29.9,
+  1947, 15.3,
+  1960, 13.0,
+  1970, 9.5,
+  1980, 6.8,
+  1991, 5.0,
+  2001, 4.2,
+  2010, 4.5)
+
+ggplot(data = demografica)+
+  geom_col(aes(x= factor(Ano), y = porcentaje), fill= "purple")+
+  geom_text(aes(x= factor(Ano), y = porcentaje+1, label = paste0(porcentaje,"%")), size = 3)+
+  labs(title = "Población nacida en el extranjero, según censos de población", 
+       subtitle = "Total del país, años 1869-2010",
+       caption = "Fuente:OIT. Censos nacionales de población 1869 a 2010, Serie Nº 29, INDEC",
+       x = "Censo", y = "")+
+  scale_y_continuous(labels = percent_format(accuracy = 1, scale= 1))+
+  theme_bw()
+```
+
+## Caracteristicas de la poblacion migrante en la actualidad
+En la Argentina -como en la mayoría de los países- las personas migrantes buscan oportunidades en sus edades productivas (y reproductivas). Por ello existe una preeminencia del grupo en edad potencialmente activa y en condición reproductiva entre la población migrante sudamericana. Aproximadamente las tres cuartas partes de este grupo tienen entre 18 y 59 años, lo que supera ampliamente las proporciones que alcanza esta misma franja de edad en la población nativa^[Informe Migraciones laborales en Argentina: protección social, informalidad y heterogeneidades sectoriales, OIT, 2015, p.
+16.].
+```{r echo=FALSE, fig.width=6, message=FALSE}
+regiones <- tribble(
+  ~Region, ~Porcentaje,
+  "Sudamérica", 79,
+  "Union Europea", 16,
+  "Resto de América", 2,
+  "Resto del mundo", 3)
+ggplot(data = regiones, aes(x= Region, y= Porcentaje, fill= Region))+
+  geom_bar(width = 1, stat = "identity",  color = "black")+
+  geom_text(aes(x= Region, y= Porcentaje+3, label = paste0(Porcentaje,"%")), size = 3)+
+  labs(title = "Distribución según regiones de origen",
+       caption = "Fuente: Censo 2010",
+       x="", y="")+
+  theme(  axis.text=element_blank(),
+        axis.title= element_blank(),
+        panel.grid=element_blank(),
+        panel.background = element_rect(fill = "white"),
+        axis.ticks = element_blank())
+```
+
+*  Una gran proporción **(67%) de las personas migrantes tiene al menos un hijx argentino,** de modo que las políticas destinadas a esta población también afectan a niñxs que, además, son ciudadanos argentinos^[OIM. Consejo Nacional de Coordinación de Políticas Sociales, Presidencia de la Nación, 2018, “Escenario base para el seguimiento de los objetivos de desarrollo sostenible vinculado a las condiciones de vida de los migrantes a través del gasto público social nacional”.].
+![](/posts/2018-12-13-caracteristicas-socio-demográficas-generales-de-la-población-migrante_files/torta.png)

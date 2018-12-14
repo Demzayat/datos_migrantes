@@ -1,0 +1,119 @@
+---
+title: Política migratoria
+author: En Defensa de los Derechos
+date: '2018-12-09'
+slug: politica-migratoria
+categories:
+  - POLITICA MIGRATORIA
+tags:
+  - POLITICA MIGRATORIA
+  - REGULARIZACION
+  - ESTADISTICAS
+description: "Los trámites de regularización migratoria está en los niveles más bajos, y falta información oficial..."
+---
+# Regularización
+* A partir de la implementación de la Ley 25.871, **entre 2004 y 2010, el proceso de
+regularización de personas migrantes fue en aumento**, resolviendo una deuda
+sostenida por décadas de vulneración de los derechos.
+* **Sin embargo, la cantidad de radicaciones resueltas (temporarias y permanentes) de
+2017 es la menor desde 2011.**
+* La cantidad de radicaciones resueltas debería poder contrastarse con el número de
+trámites de residencia iniciados y denegados, sin embargo, **esta información ya no se
+encuentra disponible** (la DNM la brindó anualmente hasta 2015).
+```{r echo=FALSE, fig.width=6, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(scales)
+radicaciones <- tribble(
+  ~Ano, ~Cantidad,
+  2004, 37519,
+  2005, 63830,
+  2006, 51075,
+  2007, 135203,
+  2008, 227807,
+  2009, 221212,
+  2010, 190125,
+  2011, 271509,
+  2012, 305150,
+  2013, 289621,
+  2014, 214785,
+  2015, 259505,
+  2016, 215139,
+  2017, 212845)
+
+ggplot(data = radicaciones)+
+  geom_line(aes(y=Cantidad, x = Ano), colour= "#E69F00", size = 1.2)+
+  geom_point(aes(y=Cantidad, x = Ano))+
+  geom_text(aes(y=Cantidad+10000, x = Ano, label = Cantidad), size =3.1)+
+  labs(title = "Radicaciones resueltas por la DNM", caption= "Fuente:DNM", y=" ", x = "Año")+
+  scale_y_continuous(name="", labels = comma, limits = c(0, 400000))+
+  scale_x_continuous(name="Año", labels = seq(2004, 2017,1), breaks = seq(2004,2017,1))+
+  theme_bw()
+```
+
+
+ 
+*  **Un aspecto relevante y preocupante de la gestión migratoria actual es la ausencia de
+datos actualizados y desagregados** para hacer un seguimiento de los avances y
+retrocesos de la política pública en esta materia.
+
+# Gestión migratoria
+Este descenso de la cantidad de radicaciones, es consecuencia de que desde 2016, la DNM ha modificado la gestión y aplicación de la Ley en relación a la regularización migratoria. Las distintas acciones en su conjunto tienden a dificultar el acceso a la regularidad migratoria y a afianzar la lógica del control y de la criminallización. Entre tales acciones se destacan:
+
+* **Cierre de delegaciones** dificultando el acceso a la documentación.
+* **Cierre del Programa de abordaje territorial**, mediante el cual se facilitaban los
+trámites de regularización.
+* **Aumento de tasas.** Ej: Residencia Permanente o Temporaria de extranjeros de
+países MERCOSUR y Estados Asociados: \$600 (2015) ---\$1000 (2016) ---\$3000 (2018) 
+* **Demoras en el otorgamiento de turnos** para radicación y renovación
+* Implementación de **mecanismos tecnológicos - no accesibles para todas las
+personas migrantes** -- para solicitar turnos.
+* **Aumento de los operativos de control de permanencia y modificación de los
+mismos:** desde modalidades que priorizaban brindar información para facilitar
+la regularización, hacia formas persecutorias experimentadas como
+profundamente atemorizantes.
+
+```{r echo=FALSE, fig.width=6, message=FALSE, warning=FALSE}
+permanencia <- tribble(
+  ~Ano, ~Cantidad,
+  2013, 6871,
+  2014, 7475,
+  2015, 8445,
+  2016, 13909,
+  2017, 17166)
+ggplot(data = permanencia)+
+  geom_line(aes(y=Cantidad, x = Ano), colour= "#E69F00")+
+  geom_point(aes(y=Cantidad, x = Ano))+
+  geom_text(aes(y=Cantidad+800, x = Ano, label = Cantidad), size =3)+
+  labs(title = "Cantidad de Controles de Permanencia", caption= "Fuente:DNM", y=" ", x = "Año")+
+  ylim(2000,20000)+
+  theme_bw()
+```
+
+# Expulsiones
+* La DNM, al mismo tiempo que resolvía menos expedientes de radicaciones, y que se aumentaron los controles de permanencia, también aumentó la cantidad de resoluciones que resuelven expulsiones:
+```{r echo=FALSE, fig.width=6, message=FALSE, warning=FALSE}
+expulsiones <- tribble(
+  ~Ano, ~expulsion, ~antecedentes, ~canceladas,
+  2014, 1760, 809, 99,
+  2015, 1908, 895, 90,
+  2016, 3258, 1286,79,
+  2017, 2785, 1983, 527)
+ # 2018, NA,707, 136)
+expulsiones <- expulsiones %>% 
+  filter (Ano != 2018)
+
+ggplot (data = expulsiones, aes(x = Ano))+
+  geom_bar (aes(y = expulsion, fill = "Total Expulsiones"), stat = "identity")+
+  geom_bar (aes(y = antecedentes, fill = "Por causas Penales"), stat = "identity")+
+  geom_bar (aes(y = canceladas, fill = "Cancelación de Residencia"), stat = "identity")+
+  ylim (0, 3500)+
+  labs(fill = " ", x="Año", y= "", title = "Cantidad de expulsiones decretadas por la DNM", 
+       caption = "Fuente DNM")+
+  geom_text(aes(y =expulsion+70, x = Ano, label = expulsion), size = 3.5)+
+  geom_text(aes(y =antecedentes+70, x = Ano, label = antecedentes), size = 3.5)+
+  geom_text(aes(y =canceladas+70, x = Ano, label = canceladas), size = 3.5)+
+  theme_bw()+
+  theme( axis.text.y = element_blank(), 
+         axis.ticks.y = element_blank())
+```
+

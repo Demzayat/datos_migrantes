@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</title>
+    <link>/datos_migrantes/categories/</link>
+    <description>Recent content in Categories on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 06 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/datos_migrantes/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Aportes Impositivos</title>
+      <link>/datos_migrantes/categories/aportes-impositivos/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/categories/aportes-impositivos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Estereotipos Discriminatorios</title>
+      <link>/datos_migrantes/categories/estereotipos-discriminatorios/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/categories/estereotipos-discriminatorios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Migraciones Y Criminalidad</title>
+      <link>/datos_migrantes/categories/migraciones-y-criminalidad/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/categories/migraciones-y-criminalidad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Migraciones Y Uso De Los Servicios Publicos</title>
+      <link>/datos_migrantes/categories/migraciones-y-uso-de-los-servicios-publicos/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/categories/migraciones-y-uso-de-los-servicios-publicos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Politica Migratoria</title>
+      <link>/datos_migrantes/categories/politica-migratoria/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/categories/politica-migratoria/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

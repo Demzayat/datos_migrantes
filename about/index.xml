@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</title>
+    <link>/datos_migrantes/about/</link>
+    <description>Recent content in About on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 20 Jun 2015 14:02:37 +0200</lastBuildDate>
+    
+	<atom:link href="/datos_migrantes/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

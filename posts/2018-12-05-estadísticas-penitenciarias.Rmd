@@ -1,0 +1,93 @@
+---
+title: Estadísticas Penitenciarias
+author: ''
+date: '2018-12-05'
+slug: estadísticas-penitenciarias
+categories:
+  - MIGRACIONES Y CRIMINALIDAD
+tags:
+  - CRIMINALIDAD
+  - ESTADISTICAS
+  - PENITENCIARIAS
+description: "¿Son los extranjeros quienes cometen la mayoría de los delitos? ¿Cuántos extranjeros detenidos hay? Los extranjeros detenidos constituyen el 0,28 % del total de la población inmigrante que habita en nuestro país. Según las estadísticas... "
+---
+# MIGRACIONES Y CRIMINALIDAD
+
+##¿Cuántos extranjeros detenidos hay?
+Los extranjeros detenidos constituyen el 0,28 % del total de la población inmigrante que habita en nuestro país. Según las estadísticas de la Procuración Penitenciaria de 2017, existen 5108 extranjeros detenidos en las cárceles del país^[https://ppn.gov.ar/ejes-tematicos/colectivos-vulnerables/243-extranjeros-privados-de-libertad], sobre un total de 1.805.957 residentes extranjeros en Argentina,  según el censo del INDEC de 2010^[https://www.indec.gov.ar/definitivos_bajarArchivoNacionales.asp?idc=13&arch=x&c=2010)].
+```{r, echo = FALSE, message=FALSE, fig.width=8}
+library(tidyverse)
+library(waffle)
+library(extrafont)
+library(scales)
+## Grafico 1. detenidos migrantes sobre el total
+detenidos <- tribble(
+~ano, ~detenidos, ~nodetenidos,
+#--/--/----
+"2017", 6.0, 94,
+"2016", 6.0, 94,
+"2015", 6.0, 94,
+"2014", 5.6, 94.4,
+"2013", 5.4, 94.6,
+"2012", 5.8, 94.2,
+"2011", 5.6, 94.4,
+"2010", 5.5, 94.5,
+"2009", 5.7,94.3,
+"2008", 5.7, 94.3,
+"2007", 6,94,
+"2006", 5.3, 94.7,
+"2005", 5.8, 94.2,
+"2004", 4.5,95.5,
+"2003", 4.7, 95.3,
+"2002", 4.9,95.1
+)
+detenidos <- detenidos %>% 
+  arrange(ano) %>%
+  rename(Año = ano, 
+         Detenidos = detenidos, 
+       `No Detenidos` = nodetenidos)
+detenidos <- detenidos %>%
+  mutate(Total = Detenidos + `No Detenidos`)
+##Grafico 2. Porcentaje de migrantes detenidos sobre el total
+condenados <- data.frame(
+  names = c("Detenidos (0,28%)","No Detenidos (99,73%)"),
+  vals = c(3, 997))
+conden <- waffle(condenados, rows = 20, size = 1, 
+       colors = c("red", "grey"), xlab = "1 cuadrado == 0.1%")
+conden + labs(title = "Porcentaje de extranjeros detenidos sobre el total de inmigrantes",
+              caption = "Fuente: Elaboración en base a la población inmigrante que vive en el país - Indec, Censo 2010-
+              y extranjeros detenidos - SNEEP 2017")
+```
+
+## Evolución de las detenciones en el tiempo
+Entre 2002 y 2017 los extranjeros detenidos en la Argentina han representado entre el 4,9 % y el 6 % del total de población recluida en establecimientos del Servicio Penitenciario Federal y de los Servicios Penitenciarios Provinciales^[https://ppn.gov.ar/ejes-tematicos/colectivos-vulnerables/243-extranjeros-privados-de-libertad]. De modo que la proporción de reclusos extranjeros sobre el total de detenidos no ha registrado grandes variaciones durante más de una década.
+
+```{r, echo = FALSE, message=FALSE, fig.width=8}
+ggplot (data = detenidos) +
+  geom_col (aes(x= Año, y = Total), fill = "red", color = "black")+
+  geom_col (aes(x= Año, y = `No Detenidos`), fill = "grey", color = "black")+
+  ylim(0,105)+
+  labs(y = "Total población carcelaria", x = "Año", title = "Evolución de población extranjera detenida en Argentina 
+En porcentaje sobre el total de población carcelaria. Años 2002-2017",
+       caption = "Fuente: Datos en base a Informe SNEEP 2016 y SNEEP 2017")+
+  geom_text(aes(label= paste0(Detenidos, "%"), x= Año, y = Total +2.1 ))+
+  scale_y_continuous(labels = dollar_format(suffix = "%", prefix = "")) +
+  #theme_bw()
+  theme(panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      #panel.border = element_blank(),
+      axis.ticks = element_blank(),
+      #axis.text.y=element_blank(),
+      #axis.text.x=element_blank(),
+      panel.background = element_rect(fill = "white"),
+      panel.border= element_rect(linetype = "solid", fill = NA),
+      legend.direction = "horizontal",
+      legend.position = c(0.5,0.5))
+```
+
+## Extranjeros presos en el sistema federal
+La **proporción de presos extranjeros sobre el total de detenidos es mayor en la cárceles federales (22,6% --cerca de 2500 sobre 10.000 detenidos--) que en las provinciales (3,2% --cerca de 2500 extranjeros sobre 60.000 detenidos--)**. Esta relativa sobrerrepresentación de extranjeros en el sistema federal responde a que **allí se alojan la mayor parte de los reclusos por narcotráfico, que en todo el mundo suelen ser mayoritariamente extranjeros -–no necesariamente inmigrantes asentados, sino también población en tránsito–-**, debido a que la propia modalidad delictiva suele implicar el cruce de fronteras^[Sistema Nacional de Estadísticas sobre Ejecución de la Pena (SNEEP), Ministerio de Justicia y Derechos Humanos, Presidencia de la Nación. “Informe sobre personas extranjeras privadas de la libertad en establecimientos de ejecución de la pena dependientes de servicios penitenciarios Provinciales y Federales.” Argentina.].
+
+## Más del 70% de las personas extranjeras detenidas carece de condena.
+¿Por qué este porcentaje es tan alto? Las personas extranjeras **tienen más dificultades que las nacionales para transitar el proceso judicial en libertad**. A veces esto ocurre por falta de arraigo, otras,por no poseer una residencia regular^[ García, Lila & Ana Paula Penchaszadeh, “Política migratoria y seguridad en Argentina hoy: ¿el paradigma de derechos humanos en jaque ?” En: Revista URVIO (en prensa).].
+

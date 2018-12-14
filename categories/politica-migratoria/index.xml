@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Politica Migratoria on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</title>
+    <link>/datos_migrantes/categories/politica-migratoria/</link>
+    <description>Recent content in Politica Migratoria on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/datos_migrantes/categories/politica-migratoria/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tramites de Naturalización</title>
+      <link>/datos_migrantes/posts/tramites-de-naturalizaci%C3%B3n/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/posts/tramites-de-naturalizaci%C3%B3n/</guid>
+      <description>TRAMITES DE NATURALIZACION  Los datos estadísticos desmienten los argumentos esgrimidos por el Poder Ejecutivo en el DNU 70/2017 para modificar la Ley 346 de Ciudadanía y Naturalización bajo el pretexto de haber “advertido otra modalidad de fraude a la Ley Migratoria que hace indispensable modificar la Ley N° 346 de Ciudadanía, a fin de precisar que es requisito tener residencia permanente o temporaria de forma continua en los DOS (2) años anteriores, a los efectos del cómputo del arraigo necesario para acceder a la nacionalidad por naturalización” (DNU 70/2017).</description>
+    </item>
+    
+    <item>
+      <title>Política migratoria</title>
+      <link>/datos_migrantes/posts/politica-migratoria/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/posts/politica-migratoria/</guid>
+      <description>Regularización  A partir de la implementación de la Ley 25.871, entre 2004 y 2010, el proceso de regularización de personas migrantes fue en aumento, resolviendo una deuda sostenida por décadas de vulneración de los derechos. Sin embargo, la cantidad de radicaciones resueltas (temporarias y permanentes) de 2017 es la menor desde 2011. La cantidad de radicaciones resueltas debería poder contrastarse con el número de trámites de residencia iniciados y denegados, sin embargo, esta información ya no se encuentra disponible (la DNM la brindó anualmente hasta 2015).</description>
+    </item>
+    
+  </channel>
+</rss>

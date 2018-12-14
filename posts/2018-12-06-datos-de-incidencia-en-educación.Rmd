@@ -1,0 +1,58 @@
+---
+title: Datos de incidencia en Educación
+author: En Defensa de los Derechos
+date: '2018-12-06'
+slug: datos-de-incidencia-en-educación
+categories:
+  - MIGRACIONES Y USO DE LOS SERVICIOS PUBLICOS
+tags:
+  - EDUCACION
+  - USO DE LOS SERVICIOS PUBLICOS
+description: "El estereotipo discriminatorio también se construye con la idea de que los  inmigrantes abusan de la educación pública, pero, ¿los datos muestran eso?"
+---
+# MIGRACIONES, USO Y ¿ABUSO? DE LOS SERVICIOS PUBLICOS
+
+## Incidencia Migrante en el Sistema Educativo
+
+* La proporción de menores de 18 años migrantes que asisten al colegio sobre los
+menores de 18 años totales que asisten al colegio es baja: 1,39%.
+* Lo mismo ocurre con el porcentaje de migrantes estudiantes de grado en
+universidades públicas respecto del total de estudiantes en ese nivel educativo: 2,61%^[Segun datos de OIM y Consejo Nacional de Coordinación de Políticas Sociales, Presidencia de la Nación. (2018) _“Escenario
+base para el seguimiento de los objetivos de desarrollo sostenible vinculado a las condiciones de vida de los migrantes a través del gasto público social nacional”_). Argentina.].
+
+```{r, echo=FALSE, message=FALSE, fig.width=8}
+library(tidyverse)
+library(scales)
+educacion <- tribble(
+  ~Sistema, ~Migrante,
+  "Educación obligatoria", 1.39,
+  "Universidades Públicas", 2.61)
+educacion <- mutate(educacion, "Total" = 100)
+
+ggplot (data = educacion) +
+  geom_col (aes(x= Sistema, y = Total), width = 0.5, fill = "grey", color = "black")+
+  geom_col (aes(x= Sistema, y = `Migrante`), width = 0.5, fill = "#7fcdbb", color = "black")+
+  labs(title = "Participación de los migrantes en el sistema educativo", x = " ", y = " ",
+       caption = "Fuente: OIM-Consejo Nacional de Coordinacion de Políticas Sociales, 2018.
+       Escenario base para el seguimiento de los objetivos de desarrollo humano sostenible vinculado a las condiciones de vida
+       de los migrantes a través del gasto público social nacional." )+
+  geom_hline(yintercept=4.5, color= "red", linetype= 5)+
+   geom_text(aes(label= paste0(Migrante, "%"), x= Sistema, y = Migrante +2.9 ))+
+  scale_y_continuous(labels = number_format(suffix = "%", prefix = "", accuracy = 0.1), expression(0,4.5,25,50,75,100), 
+                     breaks = c(0,4.5,25,50,75,100)) +
+  scale_x_discrete(limits = rev(educacion$Sistema))+
+  scale_fill_discrete(name = "Tipo de Prestación", labels = c("No contributiva", "Contributiva"))+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        #panel.border = element_blank(),
+        axis.ticks = element_blank(),
+        #axis.text.y=element_blank(),
+        #axis.text.x=element_blank(),
+        panel.background = element_rect(fill = "white"),
+        panel.border= element_rect(linetype = "solid", fill = NA),
+        text = element_text(size=12),
+        axis.text.x = element_text(colour = c('black', 'red', 'black', 'black', 'black' ,"black")))+
+  coord_flip()
+
+```
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migraciones Y Criminalidad on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</title>
+    <link>/datos_migrantes/categories/migraciones-y-criminalidad/</link>
+    <description>Recent content in Migraciones Y Criminalidad on En Defensa de los Derechos de las personas Migrantes y Refugiadas en Argentina</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/datos_migrantes/categories/migraciones-y-criminalidad/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Estadísticas Penitenciarias</title>
+      <link>/datos_migrantes/posts/estad%C3%ADsticas-penitenciarias/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/datos_migrantes/posts/estad%C3%ADsticas-penitenciarias/</guid>
+      <description>MIGRACIONES Y CRIMINALIDAD ¿Cuántos extranjeros detenidos hay? Los extranjeros detenidos constituyen el 0,28 % del total de la población inmigrante que habita en nuestro país. Según las estadísticas de la Procuración Penitenciaria de 2017, existen 5108 extranjeros detenidos en las cárceles del país1, sobre un total de 1.805.957 residentes extranjeros en Argentina, según el censo del INDEC de 20102.  Evolución de las detenciones en el tiempo Entre 2002 y 2017 los extranjeros detenidos en la Argentina han representado entre el 4,9 % y el 6 % del total de población recluida en establecimientos del Servicio Penitenciario Federal y de los Servicios Penitenciarios Provinciales3.</description>
+    </item>
+    
+  </channel>
+</rss>
